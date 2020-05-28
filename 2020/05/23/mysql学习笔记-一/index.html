@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数据库," />
+  <meta name="keywords" content="mysql,数据库," />
 
 
 
@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="提出问题1.有一个业务场景，在删除A表里面的记录的同时需要删除B表里面的相关记录，有几种实现方式？ 提示：目前有三种。 ①存储过程里面定义原子操作；②高级编程语言事务控制；③建立A表和B表的级联关系。 2.能否具体描述一条sql语句是如何进到数据库获取数据以及返回结果的过程？ 提示：高级语言-编译器-权限认证-逻辑映射-磁盘IO-层级返回 3.能说下数据库物理结构有哪几种吗？他们分别有什么特点">
+<meta name="description" content="0.引入保存数据的容器主要有：  数组 集合 文件  数组和集合都是内存里面，如果服务器发生断电或者宕机的时候，内存里面的数据都会失效；因此大多数据采用文件的形式来保存。它的好处主要是可以持久化数据，并且通过一个系统来管理持久化的数据，便于查询和分析。 1.数据库相关概念DB：存储数据的仓库，它保存了一系列有组织的数据。 DBMS：数据库管理系统，数据库是通过DBMS创建和操作的容器。 常见的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="01数据库的简单思考">
-<meta property="og:url" content="www.starry.run/2020/05/15/think1/index.html">
+<meta property="og:title" content="MySQL学习笔记一">
+<meta property="og:url" content="www.starry.run/2020/05/23/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/index.html">
 <meta property="og:site_name" content="starry的技术小站">
-<meta property="og:description" content="提出问题1.有一个业务场景，在删除A表里面的记录的同时需要删除B表里面的相关记录，有几种实现方式？ 提示：目前有三种。 ①存储过程里面定义原子操作；②高级编程语言事务控制；③建立A表和B表的级联关系。 2.能否具体描述一条sql语句是如何进到数据库获取数据以及返回结果的过程？ 提示：高级语言-编译器-权限认证-逻辑映射-磁盘IO-层级返回 3.能说下数据库物理结构有哪几种吗？他们分别有什么特点">
-<meta property="og:image" content="/2020/05/15/think1/9.jpg">
-<meta property="article:published_time" content="2020-05-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-21T15:10:22.518Z">
+<meta property="og:description" content="0.引入保存数据的容器主要有：  数组 集合 文件  数组和集合都是内存里面，如果服务器发生断电或者宕机的时候，内存里面的数据都会失效；因此大多数据采用文件的形式来保存。它的好处主要是可以持久化数据，并且通过一个系统来管理持久化的数据，便于查询和分析。 1.数据库相关概念DB：存储数据的仓库，它保存了一系列有组织的数据。 DBMS：数据库管理系统，数据库是通过DBMS创建和操作的容器。 常见的">
+<meta property="og:image" content="/2020/05/23/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/mysql1.jpg">
+<meta property="article:published_time" content="2020-05-23T15:55:27.000Z">
+<meta property="article:modified_time" content="2020-05-28T14:52:44.046Z">
 <meta property="article:author" content="starry">
-<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="mysql,数据库">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="/2020/05/15/think1/9.jpg">
+<meta name="twitter:image" content="/2020/05/23/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/mysql1.jpg">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="www.starry.run/2020/05/15/think1/"/>
+  <link rel="canonical" href="www.starry.run/2020/05/23/mysql学习笔记-一/"/>
 
 
 
 
 
-  <title>01数据库的简单思考 | starry的技术小站</title>
+  <title>MySQL学习笔记一 | starry的技术小站</title>
   
 
 
@@ -254,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="www.starry.run/2020/05/15/think1/">
+    <link itemprop="mainEntityOfPage" href="www.starry.run/2020/05/23/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="starry">
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">01数据库的简单思考</h1>
+          <h1 class="post-title" itemprop="name headline">MySQL学习笔记一</h1>
         
 
         <div class="post-meta">
@@ -283,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-15T00:00:00+08:00">
-                2020-05-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-23T23:55:27+08:00">
+                2020-05-23
               </time>
             
 
@@ -306,8 +306,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93Mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库Mysql</span>
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
                   </a>
                 </span>
 
@@ -324,8 +324,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/05/15/think1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/15/think1/" itemprop="commentCount"></span>
+                <a href="/2020/05/23/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/23/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -333,7 +333,7 @@
 
           
           
-             <span id="/2020/05/15/think1/" class="leancloud_visitors" data-flag-title="01数据库的简单思考">
+             <span id="/2020/05/23/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/" class="leancloud_visitors" data-flag-title="MySQL学习笔记一">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -395,47 +395,87 @@
       
 
       
-        <img src="/2020/05/15/think1/9.jpg" class title="This is an example image">
+        <img src="/2020/05/23/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/mysql1.jpg" class>
 
-<h2 id="提出问题"><a href="#提出问题" class="headerlink" title="提出问题"></a>提出问题</h2><p><strong>1.有一个业务场景，在删除A表里面的记录的同时需要删除B表里面的相关记录，有几种实现方式？</strong></p>
-<p>提示：目前有三种。</p>
-<p>①存储过程里面定义原子操作；②高级编程语言事务控制；③建立A表和B表的级联关系。</p>
-<p><strong>2.能否具体描述一条sql语句是如何进到数据库获取数据以及返回结果的过程？</strong></p>
-<p>提示：高级语言-编译器-权限认证-逻辑映射-磁盘IO-层级返回</p>
-<p><strong>3.能说下数据库物理结构有哪几种吗？他们分别有什么特点？</strong></p>
-<p>提示：Heap File(B+Tree)，Direct file(hash)，Index File(index+heap),Grid Structure File(适合多维属性查询)，raw disk(抛弃OS的文件管理系统，数据库本身自定义一个文件管理系统来高效的存储和读取数据)</p>
-<p><strong>4.关系数据库里面常用的索引有哪些？</strong></p>
-<p>提示：①B+Tree；②cluster(簇集索引)；③dynamic hashing；④bitmap</p>
-<p><strong>5.数据库底层的查询优化是怎么做的？</strong></p>
-<p>提示：主要有两个步骤：</p>
-<p>​    ①代数优化；运算逻辑的优化实现；通过语法树–查询树的方式来实现；</p>
-<p>​    等价变化规则：投影关系的交换律，投影关系的结合律，选择关系的簇集等；</p>
-<p>​    等价变化原则：一元操作下压，减少二元操作的规模；合并公共表达式；</p>
-<p>​    ②操作优化；主要是运算符的优化实现；内存缓冲区减少磁盘的IO</p>
-<p><strong>6.数据库里面的经典算法有哪些？</strong></p>
-<p>提示：①嵌套循环算法；②归并扫描算法；③利用B+Tree或者Hash实现嵌套查询；④hash连接</p>
-<p><strong>7.数据库的备份有哪几种方式？</strong></p>
-<p>提示：①backup；②backup+增量更新；③backup+log；</p>
-<p><strong>8.数据库的事务？</strong></p>
-<p>数据库执行的最小单位。特点：A-原子性C-一致性I-隔离性D-持久性；</p>
-<p>实例：银行转账，A给B转账，A减B加；A减完后是负数则回滚，否则B加；最后commit。这整个操作必须定义在一个事务里面，保证都成功，或者都失败。</p>
-<p><strong>9.假如数据保存到数据库，但还没有完成提交语句时突然断电，数据该如何回复？</strong></p>
-<p>提示：重启动恢复机制。线程去commit list表和active list表查找记录，根据不同的情况执行不同的操作。</p>
-<p><strong>10.数据库内的并发控制不存在，将会发生什么？</strong></p>
-<p>提示：①丢失更新；②读脏数据（线程A读到线程B对同条修改的数据)-造成恢复的多米诺操作；③不可重复读；</p>
-<p>主要是有两类冲突：写写冲突和读写冲突。</p>
-<p>可串行化是对并发事务执行正确的依据。即并发执行的结果与各事务的串行结果是一致的情况；但是n个事务同时提交给数据库，有n!种串行结果，此时就需要考虑事务执行的顺序问题。因此引入锁的概念。</p>
-<p><strong>11.数据库中有哪些锁？</strong></p>
-<p>提示：</p>
-<p>①排它锁(读写都要获得对象的锁),简称X锁</p>
-<p>两段加锁协议2PL？：先获取ABC的锁，执行操作后统一释放ABC。</p>
-<p>well-formed？：遵循规则的。</p>
-<p>满足2PL和well-formed两个条件，就可以实现串行化。</p>
-<p>②共享锁(读读不加锁，读写和写写加锁),简称(S,X)锁</p>
-<p>③更新锁(U锁升级排它锁)：更新操作会先申请一个U锁，即把数据读取到内存中，然后更新升级为排它锁写入到数据库。,简称(S,U,X)锁</p>
-<p><strong>死锁</strong>：两个线程等待互相持有的锁，都无法获取想要的锁，出现循环等待。</p>
-<p>解决方法：阻止发生(1.运行之前获取需要的锁，中途不会获取锁；2.给资源排序，按照顺序加锁；3.冲突后终止；4.事务重试机制(A.根据timestamp判断年龄，年老的等待年轻的事务;B.年轻的直接获取锁，而年老的事务终止之后以以前的时间戳运行)；)，解决死锁（超时设置，）鸵鸟算法</p>
-<p><strong>活锁</strong>：又称为饿死现象。永远处于等待状态，获取不到锁。</p>
+<h2 id="0-引入"><a href="#0-引入" class="headerlink" title="0.引入"></a>0.引入</h2><p>保存数据的容器主要有：</p>
+<ul>
+<li>数组</li>
+<li>集合</li>
+<li>文件</li>
+</ul>
+<p>数组和集合都是内存里面，如果服务器发生断电或者宕机的时候，内存里面的数据都会失效；因此大多数据采用文件的形式来保存。它的好处主要是可以持久化数据，并且通过一个系统来管理持久化的数据，便于查询和分析。</p>
+<h2 id="1-数据库相关概念"><a href="#1-数据库相关概念" class="headerlink" title="1.数据库相关概念"></a>1.数据库相关概念</h2><p><strong>DB</strong>：存储数据的仓库，它保存了一系列有组织的数据。</p>
+<p><strong>DBMS</strong>：数据库管理系统，数据库是通过DBMS创建和操作的容器。</p>
+<p>常见的DBMS:Mysql, oracle, DB2, SqlServer</p>
+<p><em>思考：四种数据库分别有什么区别？适用于什么场景？</em></p>
+<p><strong>SQL</strong>：结构化查询语言，专门用来与数据库通信的语言。</p>
+<p>优点：</p>
+<ol>
+<li>通用语言，所有DBMS都支持SQL;</li>
+<li>简单易学;</li>
+<li>灵活简便，可以进行复杂和高级的数据库操作；</li>
+<li>完全开源免费；</li>
+</ol>
+<p><em>注意：它们DB和DBMS之间的关系。</em></p>
+<h2 id="2-数据库存储数据的特点"><a href="#2-数据库存储数据的特点" class="headerlink" title="2.数据库存储数据的特点"></a>2.数据库存储数据的特点</h2><ol>
+<li>将数据放到表中，表再放入库中；</li>
+<li>一个数据库中可以有多张表，每个表都有一个唯一的名字；</li>
+<li>表定义了数据在表中如何存储；</li>
+<li>表由列组成，也称为字段。所有表都是由一个或多个列组成的，每一列类似于java中的”属性”;</li>
+<li>表中的数据是按行存储的，每一个行类似于Java中的”对象”；</li>
+</ol>
+<h2 id="3-数据库分类"><a href="#3-数据库分类" class="headerlink" title="3.数据库分类"></a>3.数据库分类</h2><p>DBMS分为两类：</p>
+<ol>
+<li>基于共享文件系统的DBMS,比如Access；</li>
+<li>基于客户机-服务器的DBMS,比如Mysql, Oracle, SqlServer等；</li>
+</ol>
+<h2 id="4-Mysql的相关知识"><a href="#4-Mysql的相关知识" class="headerlink" title="4.Mysql的相关知识"></a>4.Mysql的相关知识</h2><p>创始人Monty，先后被sun、oracle收购。</p>
+<p>优点：</p>
+<ol>
+<li>成本低；开源，可免费试用；</li>
+<li>性能高，执行快；</li>
+<li>简单：简单使用和安装；</li>
+</ol>
+<h3 id="4-1-下载和安装"><a href="#4-1-下载和安装" class="headerlink" title="4.1 下载和安装"></a>4.1 下载和安装</h3><p>window下载： <a href="http://dev.mysql.com/downloads/mysql" target="_blank" rel="noopener">http://dev.mysql.com/downloads/mysql</a></p>
+<p><em>备注：此处学习使用5.5版本</em></p>
+<h3 id="4-2-MySQL服务的启动"><a href="#4-2-MySQL服务的启动" class="headerlink" title="4.2 MySQL服务的启动"></a>4.2 MySQL服务的启动</h3><p>mysql服务启动</p>
+<p><strong>方式1：命令方式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net start 服务名  &#x2F;&#x2F; 启动</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop 服务名   &#x2F;&#x2F; 停止</span><br></pre></td></tr></table></figure>
+
+<p><strong>方式2：其他方式</strong></p>
+<p>​        计算机–右击–管理–服务</p>
+<h3 id="4-3-MySQL服务的登录和退出"><a href="#4-3-MySQL服务的登录和退出" class="headerlink" title="4.3 MySQL服务的登录和退出"></a>4.3 MySQL服务的登录和退出</h3><p><strong>连接数据库</strong>：</p>
+<ol>
+<li><p>mysql自带的客户端（Command Line Client），不推荐，因为只适用于root用户。</p>
+</li>
+<li><p>命令行方式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -P 3306 -u root -p &#x2F;&#x2F; -h表示hotst，-P表示port，-u表示用户，-p表示密码</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><em>备注:如果连接本地主机，可以简洁的写。用mysql -uroot -p来连接。</em></p>
+<p><strong>退出</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit;</span><br></pre></td></tr></table></figure>
+
+<p>或者ctrl + C</p>
+<h3 id="4-4-MySQL基本命令"><a href="#4-4-MySQL基本命令" class="headerlink" title="4.4 MySQL基本命令"></a>4.4 MySQL基本命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">show databases;  &#x2F;&#x2F; 查看所有数据库  注意以分号结尾</span><br><span class="line">use 数据库名;     &#x2F;&#x2F; 使用具体数据库</span><br><span class="line">show tables;    &#x2F;&#x2F; 查看当前数据库内的所有表</span><br><span class="line">desc tablename; &#x2F;&#x2F; 查看某个表的表结构</span><br><span class="line">select * from tablename;   &#x2F;&#x2F; 查看某个表的数据</span><br><span class="line">show tables from 数据库名;  &#x2F;&#x2F; 查看其他库的所有表</span><br><span class="line">select database(); &#x2F;&#x2F; 查看当前所打开的数据库</span><br><span class="line">select version();  &#x2F;&#x2F; 查看当前数据库的版本</span><br><span class="line">mysql --version</span><br><span class="line">mysql -V</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h3 id="4-5-MySQL的语法规范"><a href="#4-5-MySQL的语法规范" class="headerlink" title="4.5 MySQL的语法规范"></a>4.5 MySQL的语法规范</h3><ol>
+<li><p>不区分大小写，但建议关键字大写，表名、列名小写；</p>
+</li>
+<li><p>每条命令用分号结尾，也可以用\g结尾；</p>
+</li>
+<li><p>每条命令根据需要，可以进行缩进或者换行；</p>
+</li>
+<li><p>注释</p>
+<p>​        单行注释： #注释文字</p>
+<p>​        单行注释： – 注释文字</p>
+<p>​        多行注释： /*  注释文字 */</p>
+</li>
+</ol>
 
       
     </div>
@@ -456,7 +496,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="www.starry.run/2020/05/15/think1/" title="01数据库的简单思考">www.starry.run/2020/05/15/think1/</a>
+    <a href="www.starry.run/2020/05/23/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/" title="MySQL学习笔记一">www.starry.run/2020/05/23/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -471,7 +511,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+            <a href="/tags/mysql-%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># mysql,数据库</a>
           
         </div>
       
@@ -484,15 +524,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/05/15/think1/" rel="next" title="01数据库的简单思考">
+                <i class="fa fa-chevron-left"></i> 01数据库的简单思考
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/23/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/" rel="prev" title="MySQL学习笔记一">
-                MySQL学习笔记一 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
